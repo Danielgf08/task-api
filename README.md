@@ -27,20 +27,20 @@ REST API para gestión de tareas con autenticación JWT, construida con Node.js 
 
 1. Clona el repositorio
 
-\`\`\`bash
+```bash
 git clone https://github.com/Danielgf08/task-api
 cd task-api
-\`\`\`
+```
 
 2. Instala las dependencias
 
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 3. Crea el archivo `.env` en la raíz con estas variables
 
-\`\`\`
+```
 PORT=3000
 DB_HOST=localhost
 DB_PORT=5432
@@ -48,11 +48,11 @@ DB_USER=tu_usuario_postgres
 DB_PASSWORD=tu_contraseña
 DB_NAME=taskdb
 JWT_SECRET=una_clave_secreta_larga
-\`\`\`
+```
 
 4. Crea la base de datos y las tablas en PostgreSQL
 
-\`\`\`sql
+```sql
 CREATE DATABASE taskdb;
 
 \c taskdb
@@ -73,13 +73,13 @@ CREATE TABLE tasks (
   completed BOOLEAN DEFAULT FALSE,
   created_at TIMESTAMP DEFAULT NOW()
 );
-\`\`\`
+```
 
 5. Inicia el servidor
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 El servidor corre en `http://localhost:3000`
 
@@ -105,39 +105,39 @@ El servidor corre en `http://localhost:3000`
 
 Todas las rutas de `/tasks` requieren el header de autorización:
 
-\`\`\`
+```
 Authorization: Bearer tu_token_jwt
-\`\`\`
+```
 
 ### Ejemplo — Registro
 
-\`\`\`bash
+```bash
 curl -X POST http://localhost:3000/auth/register \
   -H "Content-Type: application/json" \
   -d '{"name":"Test","email":"test@gmail.com","password":"123456"}'
-\`\`\`
+```
 
 ### Ejemplo — Crear tarea
 
-\`\`\`bash
+```bash
 curl -X POST http://localhost:3000/tasks \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer tu_token" \
   -d '{"title":"Mi tarea","description":"Descripción opcional"}'
-\`\`\`
+```
 
 ## Estructura del proyecto
 
-\`\`\`
+```
 src/
   config/
-    db.js           # Conexión a PostgreSQL
+    db.js                    # Conexión a PostgreSQL
   controllers/
     auth.controller.js
     task.controller.js
   middlewares/
-    auth.middleware.js    # Verificación JWT
-    validate.middleware.js # Validación con Zod
+    auth.middleware.js        # Verificación JWT
+    validate.middleware.js    # Validación con Zod
   routes/
     auth.routes.js
     task.routes.js
@@ -146,4 +146,4 @@ src/
     task.schema.js
   app.js
 index.js
-\`\`\`
+```
